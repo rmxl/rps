@@ -8,8 +8,8 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
     if(playerSelection===computerSelection) return `It was a tie!`;
-    else if(playerSelection === (computerSelection+1)%3) return `You won! ${arr2[playerSelection]} beats ${arr1[computerSelection]}.`;
-    else return `You lost! ${arr2[playerSelection]} loses to ${arr1[computerSelection]}.`;
+    else if(playerSelection === (computerSelection+1)%3) return `You won! ${arr2[playerSelection]} beats ${arr2[computerSelection]}.`;
+    else return `You lost! ${arr2[playerSelection]} loses to ${arr2[computerSelection]}.`;
 }
 
 function game() {
@@ -26,11 +26,11 @@ function game() {
         const computerChoice = getComputerChoice();
         const result = playRound(playerChoice,computerChoice);
         console.log(result);
-        if(result===`It was a tie!`) console.log(result);
+        if(result===`It was a tie!`) continue;
         else result.slice(4,7)===`won`?playerWin++:compWin++;
         i++;
 }
-    console.log(playerWin===3?`You won the game!`:`You lost the game!`);
+    console.log(playerWin>=3?`You won the game!`:`You lost the game!`);
 }
 
 game();
