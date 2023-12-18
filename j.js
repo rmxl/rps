@@ -12,27 +12,37 @@ function playRound(playerSelection, computerSelection) {
     else return `You lost! ${arr2[playerSelection]} loses to ${arr2[computerSelection]}.`;
 }
 
-function game() {
-    let i = 0;
-    let playerWin = 0;
-    let compWin = 0;
-    while(i<5){
-        let ent = prompt("What is your play?");
-        const playerChoice = arr1.indexOf(ent.toString().toLowerCase());
-        if(playerChoice===-1) {
-            console.log("Invalid input! Try again.");
-            continue;
-        }
-        const computerChoice = getComputerChoice();
-        const result = playRound(playerChoice,computerChoice);
-        console.log(result);
-        if(result===`It was a tie!`) continue;
-        else result.slice(4,7)===`won`?playerWin++:compWin++;
-        i++;
-}
-    console.log(playerWin>=3?`You won the game!`:`You lost the game!`);
+function game(ch) {
+    const playerChoice = arr1.indexOf(ch.toLowerCase());
+    const computerChoice = getComputerChoice();
+    const result = playRound(playerChoice,computerChoice);
+    textDisplay.textContent = result;
+    if(result===`It was a tie!`) return;
+    result.slice(4,7)===`won`?playerWin++:compWin++;
+    if(playerWin==5||compWin==5) displayResults();
 }
 
-game();
+function displayResults(winner){
+    const tt = playerWin==5?`Congratulations! You won the game!`:`You lost the game.`;
+    gameResult.textContent = tt;
+}
+
+let playerWin = 0;
+let compWin = 0;
+const choice = document.querySelectorAll(".buttons");
+const textDisplay = document.querySelector(".result");
+const gameResult = document.querySelector(".gamewinner");
+choice.forEach((item) => {
+    item.addEventListener("click",function(event){
+        if(playerWin==5||compWin==5){
+            gameResult.textContent = "";            
+            playerWin = 0;
+            compWin = 0;
+        }
+        game(event.target.id);
+    });
+});
+
+
 
 
