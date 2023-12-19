@@ -32,6 +32,8 @@ let compWin = 0;
 const choice = document.querySelectorAll(".buttons");
 const textDisplay = document.querySelector(".result");
 const gameResult = document.querySelector(".gamewinner");
+const scroll = document.querySelector(".play");
+let pos = document.body.scrollHeight;
 choice.forEach((item) => {
     item.addEventListener("click",function(event){
         if(playerWin==5||compWin==5){
@@ -39,10 +41,16 @@ choice.forEach((item) => {
             playerWin = 0;
             compWin = 0;
         }
-        game(event.target.id);
+        game(event.target.value??event.target.alt);
     });
 });
-
+scroll.addEventListener("click",() => {
+    scrollTo({
+        left: 0,
+        top: pos,
+        behavior: "smooth",
+    })
+})
 
 
 
