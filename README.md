@@ -1,3 +1,5 @@
 # rps
 
-A simple implementation of a Rock, Paper, Scissors game in a website, using the recently learned Javascript language. Done with the help of the Odin Project.
+A simple implementation of a Rock, Paper, Scissors game in a website, using JS.
+
+[LIVE DEMO](https://rmxl.github.io/rps/)
